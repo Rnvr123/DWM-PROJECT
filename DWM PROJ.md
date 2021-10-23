@@ -153,11 +153,6 @@ From above we can tell that the relationships between variables have not changed
 
 #### Dimensionality Reduction and PCA
 
-Since in the UCI dataset there are too many features to keep track of , Dimensionality reduction is used to reduce the number of features yet still keep much of the information from these variables.
-
-Principal component analysis (PCA) is one of the most commonly used methods of dimensionality reduction, and extracts the features with the largest variance. What PCA essentially does is the following:
-- The first step of PCA is to decorrelate your data and this corresponds to a linear transformation of the vector space your data lie in;
-- The second step is the actual dimension reduction; what is really happening is that your decorrelation step (the first step above) transforms the features into new and uncorrelated features; this second step then chooses the features that contain most of the information about the data.
 
 Let's have a look into the variables that we currently have, and apply PCA to them. As you can see, we will be using only the numerical variables (i.e. we will exclude the first two, `ID` and `Diagnosis`):
 
@@ -193,14 +188,6 @@ Proportion of Variance 0.00023 0.00005 0.00002 0.00000
 Cumulative Proportion  0.99992 0.99997 1.00000 1.00000
 ```
 
-Principal Components are the underlying structure in the data. They are the directions where there is the most variance, the directions where the data is most spread out. This means that we try to find the straight line that best spreads the data out when it is projected along it. This is the first principal component, the straight line that shows the most substantial variance in the data.
-
-PCA is a type of linear transformation on a given data set that has values for a certain number of variables (coordinates) for a certain amount of spaces. In this way, you transform a set of `x` correlated variables over `y` samples to a set of `p` uncorrelated principal components over the same samples.
-
-Where many variables correlate with one another, they will all contribute strongly to the same principal component. Where your initial variables are strongly correlated with one another, you will be able to approximate most of the complexity in your dataset with just a few principal components. As you add more principal components, you summarize more and more of the original dataset. Adding additional components makes your estimate of the total dataset more accurate, but also more unwieldy.
-
-Every eigenvector has a corresponding eigenvalue. Simply put, an eigenvector is a direction, such as "vertical" or "45 degrees", while an eigenvalue is a number telling you how much variance there is in the data in that direction. The eigenvector with the highest eigenvalue is, therefore, the first principal component. The number of eigenvalues and eigenvectors that exits is equal to the number of dimensions the data set has. In our case, we had 30 variables (32 original, minus the first two), so we have produced 30 eigenvectors / PCs. And we can see that we can address more than 95% of the variance (0.95157) using only the first 10 PCs.
-
 We should also have a deeper look in our PCA object:
 
 ```r
@@ -228,10 +215,6 @@ List of 5
 ```
 
 The information listed captures the following:
-
-1. The center point (`$center`), scaling (`$scale`) and the standard deviation(`$sdev`) of each principal component
-2. The relationship (correlation or anticorrelation, etc) between the initial variables and the principal components (`$rotation`)
-3. The values of each sample in terms of the principal components (`$x`)
 
 Let's try to visualize the results we've got so far. We will be using the [`ggbiplot` library](https://github.com/vqv/ggbiplot) for this purpose.
 
